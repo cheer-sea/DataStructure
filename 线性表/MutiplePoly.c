@@ -23,6 +23,5 @@ void CreatePolyn(Polynomial p, int n)
 {
     Polynomial P; // 定义指针变量
     P = (Polynomial)malloc(n * sizeof(PNode)); // 分配内存
-
 }
 void AddPolyn(Polynomial p1, Polynomial p2);
