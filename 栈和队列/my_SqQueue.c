@@ -18,20 +18,20 @@ typedef struct {
     int rear;
 } SqQueue;
 
-Status InitQueue(SqQueue *Q) {
+SqQueue * InitQueue(SqQueue *Q) {
 // 初始化顺序队列
     Q->base = (QElemType *)malloc(MAXSIZE * sizeof(QElemType));
     if (!Q->base) return OVERFLOW;
     Q->front = Q->rear = 0;
-    return OK;
+    return Q;
 }
 
-Status DestroyQueue(SqQueue *Q) {
+Status QueueLength(SqQueue *Q) {
 // 求队列长度
     return (Q->rear - Q->front + MAXSIZE) % MAXSIZE;
 }
 
-Status ClearQueue(SqQueue *Q, QElemType e) {
+Status EnQueue(SqQueue *Q, QElemType e) {
 // 入队
     if (Q->rear = (Q->rear + 1) % MAXSIZE)
         return ERROR;
@@ -41,6 +41,15 @@ Status ClearQueue(SqQueue *Q, QElemType e) {
     return OK;
 }
 
+Status DeQueue(SqQueue *Q, QElemType *e) {
+// 出队
+    if (Q->front == Q->rear)
+        return ERROR;
+
+    *e = Q->base[Q->front];
+    Q->front = (Q->front + 1) % MAXSIZE;
+    return OK;
+}
 
 
 
