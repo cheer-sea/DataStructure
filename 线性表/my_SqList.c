@@ -15,7 +15,7 @@ typedef struct {
 } ElemType;
 
 typedef struct {
-    ElemType *elem;
+    ElemType elem[MAXSIZE];
     int length;
 } SqList;
 
@@ -25,10 +25,7 @@ int main() {
 
 Status InitList(SqList *L) {
 // 初始化顺序表
-    L->elem = (ElemType *) malloc(MAXSIZE * sizeof(ElemType));
-    if (L->elem == NULL) {
-        return OVERFLOW;
-    }
+
     L->length = 0;
     return OK;
 }
@@ -39,7 +36,7 @@ Status GetElem(SqList L, int i, ElemType *e) {
         return ERROR;
     }
 
-    e = L.elem[i - 1];
+    *e = L.elem[i - 1];
     return OK;
 }
 
