@@ -38,6 +38,41 @@ void CreateLink(LinkList L, int n) {
         r = p;
     }
 }
-void MergeLink(LinkList L1, LinkList L2);
-void PrintResult(LinkList L);
+void MergeLink(LinkList L1, LinkList L2) {
+    Lnode *p, *q, *pre, *temp;
+    p = L1->next;
+    q = L2->next;
+    pre = L1;
+
+    while (p != NULL && q != NULL) {
+        if (p->value >= q->value) {
+            temp = q;
+            q = q->next;
+            free(temp);
+        } else {
+            while (p->value < q->value) {
+                pre = p;
+                p = p->next;
+            }
+            if (p->value == q->value) {
+                temp = q;
+                q = q->next;
+                free(q);
+            } else {
+                temp = q;
+                q = q->next;
+                temp->next = p;
+                pre->next = temp;
+            }
+        }
+    }
+}
+
+void PrintResult(LinkList L) {
+    Lnode *p;
+    p = L->next;
+    while (p != NULL) {
+        printf("%d", p->value);
+    }
+}
 
