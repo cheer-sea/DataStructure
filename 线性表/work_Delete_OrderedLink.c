@@ -13,8 +13,8 @@ void PrintResult(LinkList L);
 int main() {
     int a, b;
     LinkList L1, L2;
-    L1 = (LinkList)malloc(sizeof(Lnode *));
-    L2 = (LinkList)malloc(sizeof(Lnode *));
+    L1 = (LinkList)malloc(sizeof(Lnode));
+    L2 = (LinkList)malloc(sizeof(Lnode));
     L1->next = NULL;
     L2->next = NULL;
     scanf("%d%d", &a, &b);
@@ -29,17 +29,18 @@ int main() {
 void CreateLink(LinkList L, int n) {
     Lnode *p, *r;
     r = L;
-    p = (Lnode *)malloc(sizeof(Lnode *));
     
     for (int i = 0; i < n; i++) {
         int value;
         scanf("%d", &value);
+        p = (Lnode *)malloc(sizeof(Lnode));
         p->value = value;
         p->next = NULL;
         r->next = p;
         r = p;
     }
 }
+
 void MergeLink(LinkList L1, LinkList L2) {
     Lnode *p, *q, *pre, *temp;
     p = L1->next;
@@ -51,6 +52,7 @@ void MergeLink(LinkList L1, LinkList L2) {
             temp = q->next;
             q->next = p;
             pre->next = q;
+            pre = q;
             q = temp;
         }
         else if (q->value > p->value){
@@ -67,7 +69,7 @@ void MergeLink(LinkList L1, LinkList L2) {
     }
     
     if (q) {
-        p->next = q;
+        pre->next = q;
     }
 }
 
@@ -76,5 +78,7 @@ void PrintResult(LinkList L) {
     p = L->next;
     while (p) {
         printf("%d ", p->value);
+        p = p->next;
     }
+    printf("\n");
 }
