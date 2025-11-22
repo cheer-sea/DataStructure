@@ -51,3 +51,11 @@ int StrInsert(SString *s, int pos, SString *t) {
     }
     return 1;
 }
+
+int StrCompare(SString s, SString t) {
+    for (int i = 0; i < s.len && i < t.len; i++) {
+        if (s.ch[i] != t.ch[i]) 
+            return (s.ch[i] - t.ch[i]);
+    }
+    return (s.len - t.len);
+}
