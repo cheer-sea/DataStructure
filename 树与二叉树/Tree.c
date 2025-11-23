@@ -84,3 +84,22 @@ void PreTreeDepth(BiTree bt, int h) {
     }
 }
 
+typedef struct CSNode {
+// 孩子兄弟表示法的树结构体，（也可称为二叉表示法）
+    int data;
+    struct CSNode * firstchild;
+    struct CSNode * nextsibling;
+} CSNode, *CSTree;
+
+void RootFirst(CSTree root) {
+// 树的先根遍历
+    if (root != NULL) {
+        CSNode *p;
+        visit(root->data);
+        p = root->firstchild;
+        while (p != NULL) {
+            RootFirst(p);
+            p = p->nextsibling;
+        }
+    }
+}
