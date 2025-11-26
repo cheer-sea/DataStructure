@@ -14,6 +14,15 @@ typedef struct Node {
     struct Node *RChild;
 } BiTNode, * BiTree;
 
+typedef struct BHNode {
+// 线索二叉树结构体
+    DataType data;
+    struct BHNode *lchild;
+    struct BHNode *rchild;
+    int ltag;
+    int rtag;
+} BHTNode, *BHTree;
+
 void PreOrder(BiTree root) {
 // 先序遍历二叉树，即按根左右顺序
     if (root != NULL) {
@@ -47,7 +56,7 @@ void CountLeaf(BiTree root) {
 }
 
 int CountLeaf_2(BiTree root) {
-/* 采用分治算法，如果是空树，返回0；如果只有一个结点，说明当前就是叶子结点，返回1；否则，递归计算左右子树的叶子结点个数，相加返回。 */
+/* 采用分治算法，计算叶子结点个数。如果是空树，返回0；如果只有一个结点，说明当前就是叶子结点，返回1；否则，递归计算左右子树的叶子结点个数，相加返回。 */
     int leafcount;
     if (root == NULL) leafcount = 0;
     else if (root->LChild == NULL || root->RChild == NULL)
@@ -103,3 +112,21 @@ void RootFirst(CSTree root) {
         }
     }
 }
+
+BHTNode *pre = NULL;
+void Inthread(BHTree root) {
+// 建立中序线索二叉树
+    Inthread(root->lchild);
+    if (root != NULL) {
+        if (root->lchild == NULL) {
+            root->lchild = pre;
+            root->ltag = 1;
+        }
+    }
+    if (pre->rchild == NULL && (pre != NULL)) {
+        pre->rchild = root;
+        pre->rtag = 0;
+    }
+    Inthread(root->rchild);
+}
+
