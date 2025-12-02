@@ -7,12 +7,12 @@ typedef enum{DG, DN, UDG, UDN} GraphKind;
 typedef char VertexData;
 typedef int AdjType;
 typedef struct ArcNode {
-// 矩阵中结点的定义
+// 邻接矩阵中结点的定义
     AdjType adj; 
     char info;
 } ArcNode;
 typedef struct {
-// 矩阵的结构体定义
+// 邻接矩阵的结构体定义
     VertexData vertex[MAX_VERTEX_NUM]; // 结点
     ArcNode arcs[MAX_VERTEX_NUM][MAX_VERTEX_NUM]; // 邻接矩阵
     int vexnum, arcnum;
