@@ -45,3 +45,12 @@ void BFSTraverse(Graph G) {
         }
     }
 }
+
+
+// 深度优先遍历
+void DFS(Graph G, int v) {
+// 从结点v开始，深度优先遍历图G
+    visit(v);
+    visited[v] = true;
+    for (int w = FirstNeighbor(G, v); w >= 0; )
+}
