@@ -113,6 +113,26 @@ void RootFirst(CSTree root) {
     }
 }
 
+void inorder(BiTree root) {
+// 中序遍历二叉树，root 为根节点
+    int top = -1;
+    BiTNode *p = root;
+    InitStack(&s);
+    while(p != NULL || top != -1) {
+        if (p != NULL) {
+            top++;
+            s[top] = p;
+            p = p->LChild;
+        }
+        else {
+            p = s[top];
+            top--;
+            visit(p->data);
+            p = p->RChild;
+        }
+    }
+}
+
 BHTNode *pre = NULL;
 void Inthread(BHTree root) {
 // 建立中序线索二叉树
