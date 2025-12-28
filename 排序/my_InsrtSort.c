@@ -1,4 +1,4 @@
-#include<stdio.h>
+
 void InsertSort(int A[], int n) {
     int i, j, temp;
     for (int i = 1; i < n; i++) {
@@ -10,4 +10,5 @@ void InsertSort(int A[], int n) {
             A[j+1] = temp;
         }
     }
+    return;
 }
